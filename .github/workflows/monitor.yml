@@ -1,0 +1,47 @@
+name: Monitor BTS 3 dias
+
+on:
+  schedule:
+    - cron: "*/5 * * * *"
+  workflow_dispatch:
+
+jobs:
+  monitor:
+    runs-on: ubuntu-latest
+
+    steps:
+      - name: Baixar projeto
+        uses: actions/checkout@v4
+
+      - name: Configurar Python
+        uses: actions/setup-python@v5
+        with:
+          python-version: "3.11"
+
+      - name: Instalar dependências
+        run: |
+          pip install -r requirements.txt
+          playwright install chromium
+
+      - name: Restaurar estado
+        uses: actions/cache/restore@v4
+        with:
+          path: state.json
+          key: bts-3dias-state-${{ github.run_id }}
+          restore-keys: |
+            bts-3dias-state-
+
+      - name: Executar monitor
+        env:
+          TELEGRAM_BOT_TOKEN: ${{ secrets.TELEGRAM_BOT_TOKEN }}
+          TELEGRAM_CHAT_ID: ${{ secrets.TELEGRAM_CHAT_ID }}
+          PRICE_LIMIT: "1000"
+          MIN_DROP_REAIS: "500"
+          HEADLESS: "true"
+        run: python bot.py --once
+
+      - name: Salvar estado
+        uses: actions/cache/save@v4
+        with:
+          path: state.json
+          key: bts-3dias-state-${{ github.run_id }}
