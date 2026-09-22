@@ -4,9 +4,9 @@ from dotenv import load_dotenv
 load_dotenv()
 
 EVENTS = {
-    "28/10/2026": "https://buyticketbrasil.com/evento/bts%E2%80%932026worldtourarirang?data=1793242799000&evento_local=1775752182066x607042691407020000&cidade=S%C3%A3o+Paulo",
-    "30/10/2026": "https://buyticketbrasil.com/evento/bts%E2%80%932026worldtourarirang?data=1793415599000&evento_local=1775752182066x607042691407020000&cidade=S%C3%A3o+Paulo",
-    "31/10/2026": "https://buyticketbrasil.com/evento/bts%E2%80%932026worldtourarirang?data=1793501999000&evento_local=1775752182066x607042691407020000&cidade=S%C3%A3o+Paulo",
+    "28/10/2026": "https://buyticketbrasil.com/event/bts-2026worldtourarirang/session/ced30381-0cc4-4779-9c6b-ba05f44d086e",
+    "30/10/2026": "https://buyticketbrasil.com/event/bts-2026worldtourarirang/session/e4ac9384-ccd7-4f29-82b8-7ba8677bc2ed",
+    "31/10/2026": "https://buyticketbrasil.com/event/bts-2026worldtourarirang/session/7dbb3a2b-985d-4bf2-9d36-df893169e098",
 }
 
 TELEGRAM_BOT_TOKEN = os.getenv("TELEGRAM_BOT_TOKEN", "").strip()
